@@ -28,7 +28,7 @@ export const RootNavigator = () => {
           <Stack.Screen
             name="Users"
             component={UsersScreen}
-            options={{ title: "Users" }}
+            options={{ title: "Users", headerShown: false }}
           />
           <Stack.Screen
             name="UserDetail"

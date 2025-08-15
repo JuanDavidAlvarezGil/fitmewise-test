@@ -9,9 +9,27 @@
     "confirmPassword": "Confirm Password",
     "noAccount": "No account",
     "noAccountYet": "Don't have an account yet?",
-    "alreadyHaveAnAccount": "Already have an account?"
+    "alreadyHaveAnAccount": "Already have an account?",
+    "logout": "Logout"
   },
   "common": {
     "changeLanguage": "Change Language"
+  },
+  "errors": {
+    "generic": "An error occurred",
+    "invalidEmail": "Invalid email address",
+    "requiredEmail": "Email is required",
+    "requiredPassword": "Password is required",
+    "shortName": "Name is too short",
+    "requiredName": "Name is required",
+    "passwordsDontMatch": "Passwords do not match",
+    "requiredConfirmPassword": "Password confirmation is required"
+  },
+  "users": {
+    "listTitle": "User List",
+    "detailsTitle": "User Details",
+    "view": "View",
+    "noUsers": "No users found",
+    "refresh": "Refresh Users"
   }
 }

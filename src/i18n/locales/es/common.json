@@ -9,9 +9,27 @@
     "confirmPassword": "Confirmar contraseña",
     "noAccount": "No tengo cuenta",
     "noAccountYet": "¿No tienes una cuenta aún?",
-    "alreadyHaveAnAccount": "¿Ya tienes una cuenta?"
+    "alreadyHaveAnAccount": "¿Ya tienes una cuenta?",
+    "logout": "Cerrar sesión"
   },
   "common": {
     "changeLanguage": "Cambiar idioma"
+  },
+  "errors": {
+    "generic": "Se ha producido un error",
+    "invalidEmail": "El correo electrónico no es válido",
+    "requiredEmail": "El correo electrónico es obligatorio",
+    "requiredPassword": "La contraseña es obligatoria",
+    "shortName": "El nombre es demasiado corto",
+    "requiredName": "El nombre es obligatorio",
+    "passwordsDontMatch": "Las contraseñas no coinciden",
+    "requiredConfirmPassword": "La confirmación de contraseña es obligatoria"
+  },
+  "users": {
+    "listTitle": "Lista de usuarios",
+    "detailsTitle": "Detalles del usuario",
+    "view": "Ver",
+    "noUsers": "No se encontraron usuarios",
+    "refresh": "Actualizar usuarios"
   }
 }

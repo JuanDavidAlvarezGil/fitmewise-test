@@ -27,7 +27,16 @@ export const reqresApi = createApi({
     >({
       query: (body) => ({ url: "register", method: "POST", body }),
     }),
+    getUsers: builder.query<User[], number>({
+      query: (page = 1) => `users?page=${page}`,
+      transformResponse: (response: { data: User[] }) => response.data,
+    }),
+    getUserById: builder.query<User, number>({
+      query: (id) => `users/${id}`,
+      transformResponse: (response: { data: User }) => response.data,
+    }),
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation } = reqresApi;
+export const { useLoginMutation, useRegisterMutation, useGetUsersQuery, useGetUserByIdQuery } =
+  reqresApi;

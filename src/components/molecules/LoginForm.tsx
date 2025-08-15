@@ -9,16 +9,22 @@ import ChangeLanguage from "../atoms/ChangeLanguage";
 import ErrorText from "../atoms/ErrorText";
 import HelperText from "../atoms/HelperText";
 import Input from "../atoms/Input";
+import { Formik } from "formik";
+import { loginSchema } from "../../utils/validationSchemas";
 
 export default function LoginForm() {
   const { t } = useTranslation();
   const navigation = useAppNavigation();
   const dispatch = useAppDispatch();
-  const [email, setEmail] = useState("eve.holt@reqres.in");
-  const [password, setPassword] = useState("pistol");
   const [login, { isLoading, isError }] = useLoginMutation();
 
-  const handleLogin = async () => {
+  const handleLogin = async ({
+    email,
+    password,
+  }: {
+    email: string;
+    password: string;
+  }) => {
     try {
       const result = await login({ email, password }).unwrap();
       dispatch(setToken(result.token));
@@ -29,35 +35,62 @@ export default function LoginForm() {
 
   return (
     <>
-      <Input
-        label={t("auth.email")}
-        value={email}
-        onChangeText={setEmail}
-        keyboardType="email-address"
-      />
+      <Formik
+        initialValues={{ email: "", password: "" }}
+        validationSchema={loginSchema}
+        onSubmit={handleLogin}
+      >
+        {({
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          values,
+          errors,
+          touched,
+        }) => (
+          <>
+            <Input
+              label={t("auth.email")}
+              onChangeText={handleChange("email")}
+              onBlur={handleBlur("email")}
+              value={values.email}
+              keyboardType="email-address"
+            />
 
-      <Input
-        label={t("auth.password")}
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-      />
+            <ErrorText
+              hasError={!!errors.email && !!touched.email}
+              message={errors.email}
+            />
 
-      <Button
-        text={t("auth.login")}
-        onPress={handleLogin}
-        disabled={!!!email || !!!password}
-        loading={isLoading}
-      />
+            <Input
+              label={t("auth.password")}
+              secureTextEntry
+              value={values.password}
+              onChangeText={handleChange("password")}
+              onBlur={handleBlur("password")}
+            />
 
-      <ErrorText hasError={!!isError} />
+            <ErrorText
+              hasError={!!errors.password && !!touched.password}
+              message={errors.password}
+            />
 
-      <HelperText
-        message={t("auth.noAccountYet")}
-        textButton={t("auth.createAccount")}
-        onPress={() => navigation.navigate("Register")}
-      />
-      <ChangeLanguage />
+            <Button
+              text={t("auth.login")}
+              onPress={handleSubmit}
+              disabled={!!!values.email || !!!values.password}
+              loading={isLoading}
+            />
+
+            <HelperText
+              message={t("auth.noAccountYet")}
+              textButton={t("auth.createAccount")}
+              onPress={() => navigation.navigate("Register")}
+            />
+            <ChangeLanguage />
+          </>
+        )}
+      </Formik>
     </>
   );
 }
