@@ -4,10 +4,10 @@ import {
   NativeStackNavigationProp,
 } from "@react-navigation/native-stack";
 import React from "react";
-import LoginScreen from "../components/pages/LoginScreen";
-import RegisterScreen from "../components/pages/RegisterScreen";
-import UserDetailScreen from "../components/pages/UserDetailScreen";
-import UsersScreen from "../components/pages/UsersScreen";
+import LoginScreen from "../components/organism/LoginScreen";
+import RegisterScreen from "../components/organism/RegisterScreen";
+import UserDetailScreen from "../components/organism/UserDetailScreen";
+import UsersScreen from "../components/organism/UsersScreen";
 import { useAppSelector } from "../redux/store";
 
 export type RootStackParamList = {
