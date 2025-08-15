@@ -1,11 +1,5 @@
-import {
-  ActivityIndicator,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
 import React from "react";
+import { ActivityIndicator, Pressable, Text } from "react-native";
 
 type ButtonProps = {
   text: string;
@@ -23,18 +17,16 @@ export default function Button({
   variant = "primary",
 }: ButtonProps) {
   return (
-    <TouchableOpacity
+    <Pressable
       onPress={onPress}
       disabled={disabled}
-      className={`w-full p-3 rounded ${variant === "primary" ? "bg-blue-500" : "bg-green-500"}`}
+      className="bg-blue-500 hover:bg-blue-600 active:bg-blue-700 disabled:bg-blue-400 p-3 rounded-lg"
     >
       {loading ? (
         <ActivityIndicator color="#fff" />
       ) : (
-        <Text className="text-white text-center font-semibold">{text}</Text>
+        <Text className="text-white font-semibold text-center">{text}</Text>
       )}
-    </TouchableOpacity>
+    </Pressable>
   );
 }
-
-const styles = StyleSheet.create({});

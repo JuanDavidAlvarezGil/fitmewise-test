@@ -3,12 +3,13 @@ import React, { useEffect } from "react";
 import "react-native-gesture-handler";
 import { Provider, useDispatch } from "react-redux";
 import "./global.css";
-import { RootNavigator } from "./src/components/navigation/RootNavigator";
+import { RootNavigator } from "./src/navigation/RootNavigator";
 import { setToken } from "./src/features/auth/authSlice";
 import "./src/i18n";
 import { InactivityProvider } from "./src/modules/session/InactivityProvider";
 import { store } from "./src/redux/store";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { calculateMilisecondsFromMinutes } from "./src/utils/calculateMiliseconds";
 
 const Bootstrapper = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useDispatch();
@@ -21,12 +22,14 @@ const Bootstrapper = ({ children }: { children: React.ReactNode }) => {
   return <>{children}</>;
 };
 
+const INACTIVITY_TIMEOUT_MS = calculateMilisecondsFromMinutes(5);
+
 export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
         <Bootstrapper>
-          <InactivityProvider timeoutMs={5 * 60 * 1000}>
+          <InactivityProvider timeoutMs={INACTIVITY_TIMEOUT_MS}>
             <RootNavigator />
           </InactivityProvider>
         </Bootstrapper>

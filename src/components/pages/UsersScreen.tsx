@@ -1,5 +1,8 @@
 import React from "react";
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import { logout } from "../../features/auth/authSlice";
+import { useAppDispatch } from "../../redux/store";
+import Button from "../atoms/Button";
 
 const mockUsers = [
   { id: "1", name: "John Doe" },
@@ -8,6 +11,11 @@ const mockUsers = [
 ];
 
 export default function UsersScreen({ navigation }: any) {
+  const dispatch = useAppDispatch();
+  const onLogout = () => {
+    dispatch(logout());
+  };
+
   return (
     <View className="flex-1 bg-white p-6">
       <Text className="text-2xl font-bold mb-4">Users</Text>
@@ -26,6 +34,7 @@ export default function UsersScreen({ navigation }: any) {
           </TouchableOpacity>
         )}
       />
+      <Button text="Cerrar Sesion" onPress={onLogout} />
     </View>
   );
 }

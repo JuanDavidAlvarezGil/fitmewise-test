@@ -1,10 +1,17 @@
 {
-    "app": { "title": "Fitmewise Test" },
-    "auth": {
-        "login": "Iniciar sesión",
-        "register": "Registrarse",
-        "email": "Correo electrónico",
-        "password": "Contraseña",
-        "noAccount": "No tengo cuenta"
-    }
+  "auth": {
+    "welcome": "Bienvenido",
+    "createAccount": "Crear cuenta",
+    "login": "Iniciar sesión",
+    "register": "Registrarse",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "noAccount": "No tengo cuenta",
+    "noAccountYet": "¿No tienes una cuenta aún?",
+    "alreadyHaveAnAccount": "¿Ya tienes una cuenta?"
+  },
+  "common": {
+    "changeLanguage": "Cambiar idioma"
+  }
 }

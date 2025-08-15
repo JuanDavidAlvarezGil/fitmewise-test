@@ -1,17 +1,30 @@
-import React, { useEffect, useRef, useCallback } from "react";
-import { AppState, AppStateStatus, TouchableWithoutFeedback, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import { logout, touch } from "../../features/auth/authSlice";
-import { RootState } from "../../redux/store";
+import React, { useCallback, useEffect, useRef } from "react";
+import {
+  AppState,
+  AppStateStatus,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 
-export const InactivityProvider = ({ timeoutMs, children }: { timeoutMs: number; children: React.ReactNode }) => {
-  const dispatch = useDispatch();
+import { logout, touch } from "../../features/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "../../redux/store";
+
+type InactivityProviderProps = {
+  timeoutMs: number;
+  children: React.ReactNode;
+};
+
+export const InactivityProvider = ({
+  timeoutMs,
+  children,
+}: InactivityProviderProps) => {
+  const dispatch = useAppDispatch();
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const appState = useRef<AppStateStatus>(AppState.currentState);
-  const token = useSelector((s: RootState) => s.auth.token);
+  const token = useAppSelector((state) => state.auth.token);
 
   const resetTimer = useCallback(() => {
-    if (!token) return; 
+    if (!token) return;
     if (timerRef.current) clearTimeout(timerRef.current);
     dispatch(touch());
     timerRef.current = setTimeout(() => dispatch(logout()), timeoutMs);

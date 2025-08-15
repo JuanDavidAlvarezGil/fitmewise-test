@@ -1,12 +1,18 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { useTranslation } from "react-i18next";
+import Background from "../atoms/Background";
+import Card from "../atoms/Card";
+import ScreenTitle from "../atoms/ScreenTitle";
 import LoginForm from "../molecules/LoginForm";
 
 export default function LoginScreen() {
+  const { t } = useTranslation();
   return (
-    <View className="flex-1 justify-center items-center bg-gray-100 p-6">
-      <Text className="text-2xl font-bold mb-6">Bienvenido</Text>
-      <LoginForm />
-    </View>
+    <Background>
+      <Card>
+        <ScreenTitle title={t("auth.welcome")} />
+        <LoginForm />
+      </Card>
+    </Background>
   );
 }
