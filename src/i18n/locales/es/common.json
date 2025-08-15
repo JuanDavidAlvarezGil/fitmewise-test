@@ -1,0 +1,10 @@
+{
+    "app": { "title": "Fitmewise Test" },
+    "auth": {
+        "login": "Iniciar sesión",
+        "register": "Registrarse",
+        "email": "Correo electrónico",
+        "password": "Contraseña",
+        "noAccount": "No tengo cuenta"
+    }
+}
